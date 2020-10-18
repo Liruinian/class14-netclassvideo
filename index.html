@@ -1,0 +1,152 @@
+<style>
+body{
+text-align:center;
+background: url("bgloading.jpg") no-repeat;
+right:0; bottom:0;
+z-index:-100; background-size: cover;
+}
+.spinner {
+
+     margin:25% auto 0;
+
+     width: 370px;
+
+     text-align: center;
+
+   }
+
+     
+
+   .spinner > div {
+
+     width: 30px;
+
+     height: 30px;
+
+     background-color: #d2e8f6;
+
+     
+
+     border-radius: 100%;
+
+     display: inline-block;
+
+     -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+
+     animation: bouncedelay 1.4s infinite ease-in-out;
+
+     /* Prevent first frame from flickering when animation starts */
+
+     -webkit-animation-fill-mode: both;
+
+     animation-fill-mode: both;
+
+   }
+
+     
+
+   .spinner .bounce1 {
+
+     -webkit-animation-delay: -0.32s;
+
+     animation-delay: -0.32s;
+
+   }
+
+     
+
+   .spinner .bounce2 {
+
+     -webkit-animation-delay: -0.16s;
+
+     animation-delay: -0.16s;
+
+   }
+
+     
+
+   @-webkit-keyframes bouncedelay {
+
+     0%, 80%, 100% { -webkit-transform: scale(0.0) }
+
+     40% { -webkit-transform: scale(1.0) }
+
+   }
+
+     
+
+   @keyframes bouncedelay {
+
+     0%, 80%, 100% {
+
+       transform: scale(0.0);
+
+       -webkit-transform: scale(0.0);
+
+     } 40% {
+
+       transform: scale(1.0);
+
+       -webkit-transform: scale(1.0);
+
+     }
+
+   }
+
+H2 {
+color:white;
+}
+p{
+color:white;
+}
+a {
+text-align: center; margin: 0 auto;color:white;
+}
+</style>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<div class="spinner">
+<H2 id="loadingtext" align="center">正在尝试与神经网络建立连接</H2>
+    <div class="bounce1" id="loading1"></div>
+    <div class="bounce2" id="loading2"></div>
+    <div class="bounce3" id="loading3"></div>
+	<a href="/choose.html"><img id="login" height="52px" width="371px" src="login.png" style="display: none;"></img></a>
+	<p>本次主题活动使用的《明日方舟》游戏内的图片，音乐和视频版权均属于 上海鹰角网络科技有限公司。</p>
+	<p>不涉及任何商业行为，禁止随意分发以上资源，如有侵权请联系网站管理员。</p>
+</div>
+
+<audio src="sys_title.mp3" autoplay="autoplay" loop controls></audio>
+<script>
+    let imglist = [{name: 'Wechat', url: './ossjpg/Wechat.jpg'},{name: 'Amiyabg', url: './wordpress/bg.png'},{name: 'oragmiplane', url: './wordpress/wp-content/themes/origami-master/image/origami.png'},{name: 'logo', url: './wp-content/uploads/2020/04/logo.png'},{name: 'bgmrfz', url: 'https://ak.hypergryph.com/upload/images/20190228/b18b912d69fa0b3d571054c8f5fda5cf.jpg'},{name: 'sanzhong', url: './wp-content/uploads/2020/04/timg.jpg'},{name: 'Amiyagif', url: './wordpress/Amiya.gif'},{name: 'ossbg', url: './bg.jpg'},{name: 'all', url: './ossjpg/all.jpg'},{name: 'sx', url: './ossjpg/sx.jpg'},{name: 'yw', url: './ossjpg/yw.jpg'},{name: 'yy', url: './ossjpg/yy.jpg'},{name: 'wl', url: './ossjpg/wl.jpg'},{name: 'hx', url: './ossjpg/hx.jpg'},{name: 'sw', url: './ossjpg/sw.jpg'}];
+    let length = imglist.length;
+    let images = new Array(); // 定义一个数组容器，用来存储预加载完成的图片
+    let loadEl = document.getElementById("loadingtext");
+    function preload () {
+        let count = 0; // 计算器，计算加载了多少图片
+        for (let i = 0; i < length; i++) {
+            images[i] = new Image();
+            images[i].src = `${imglist[i].url}`; 
+            // 谷歌浏览器高版本支持大部分ES6，所以这里就不用字符串拼接了。
+            images[i].onload = function () {
+                count++;
+                if (count === length) {
+                    loadEl.innerHTML = '与神经网络成功建立连接';
+					document.getElementById("login").style.display="block";
+					document.getElementById("loading1").style.display="none";
+					document.getElementById("loading2").style.display="none";
+					document.getElementById("loading3").style.display="none";
+                } else {
+					loadEl.innerHTML = `神经递质已释放${Math.round(count / length * 100)}%`;
+                }
+            }
+        }
+    }
+setTimeout(function(){
+    preload();
+        },500);
+</script>
+</body>
+<html>

@@ -1,0 +1,8 @@
+{
+	"type": "Live2D Model Setting",
+	"name": "chito",
+	"model": "chito.moc",
+	"textures": [
+		"chito.2048/texture_00.png"
+	]
+}
